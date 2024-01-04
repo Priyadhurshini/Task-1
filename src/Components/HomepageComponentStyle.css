@@ -1,0 +1,42 @@
+.myForm-Container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+   
+}
+
+label{
+    
+    display: inline-block; 
+    text-align: right;   
+    width: 10%;
+    max-width: 15%;
+   
+
+}
+
+input{
+   border-color: rgb(47, 46, 46);
+    margin-left:1%;
+    margin-bottom: 0.5%;
+    width: 15%;
+    max-width: 20%;
+
+}
+
+.Submit-btn{
+    display: inline-block;
+    width: 10%;
+    margin-top: 1%;
+}
+
+.Nextpage-btn{
+    display: inline-block;
+    width: 10%;
+    margin-top: 1%;
+}
+
+span{
+    display: inline;
+}

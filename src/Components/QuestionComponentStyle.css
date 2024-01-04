@@ -1,0 +1,34 @@
+.Next-Question-btn{
+    display: inline-block;
+    color:red;
+    width: 100px;
+    max-width: 100px;
+    margin-left: 20px;
+}
+
+.Previous-Question_btn{
+    display: inline-block;
+    color:red;
+    width: 100px;
+    max-width: 100px;
+    margin-left: 20px;
+}
+
+button :enabled{
+    color: blue;
+}
+
+/* .disabled{
+    color: aqua;
+} */
+
+.Question-Component-Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    border: solid;
+    border-color: black;
+    /* background-color: aqua; */
+}
