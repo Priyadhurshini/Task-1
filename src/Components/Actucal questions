@@ -1,0 +1,200 @@
+import React from "react";
+
+const Questions ={
+
+    questions : [
+            
+        {
+            questionNumber: 1,
+            question : "What would you like to do?",
+            choices : ["I want to classify documents.","I want to extract data from documents.","Both."],
+            choice : null,
+            choiceCondition: null,
+            dependentQuestion : 0,
+            dependentChoice : null
+            
+        },
+
+        {
+            questionNumber: 2,
+            question : "How will you provide documents for processing?",
+            choices : ["I can place documents in a folder. - $0", "We have APIs to transfer documents. - $0", "We may need custom connectors. - $1280 per connector."],
+            choice : null,
+            choiceCondition : "We may need custom connectors. - $1280 per connector." ,
+            dependentQuestion : 0,
+            dependentChoice : null
+            
+        },
+
+        {
+            questionNumber: 3,
+            question : "How many source application you would need to connect to?",
+            choices : ["Drop Down from 1 to 10"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 4,
+            question : "Tell us about document quality:",
+            choices : ["Documents are clean and of good quality. - $0" , "We need to improve document quality. - $2160."],
+            choice : null,
+            choiceCondition : null,
+            dependentQuestion : 1,
+            dependentChoice : "I want to extract data from documents."
+           
+        },
+
+        {
+            questionNumber: 5,
+            question : "Document classification:",
+            choices : ["Single-page documents. - $0.02 per page", "PDF packages with multiple documents. - $0.04 per page"],
+            choice : null,
+            choiceCondition : null,
+            dependentQuestion : 1,
+            dependentChoice : "I want to classify documents."
+           
+        },
+
+        {
+            questionNumber: 6,
+            question : "Data extraction preferences:",
+            choices : ["Extract everything for readability. - $0.02 per page","Extract specific fields. - $0.04 per page"	,"Complex extraction (tables, JSON, CSV, etc.). - $0.06 per page"	,"Extract handwritten information. - $0.10 per page"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 7,
+            question : "Need data validation?",
+            choices : ["Yes, basic checks (e.g., expiry). - $0.001 per data validated", "Yes, cross-reference with multiple sources. - $0.005 per data validated", "No, validation not needed. - $0"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 8,
+            question : "Require human verification?",
+            choices : ["Yes, accuracy is crucial. - $6000","No, further internal validation is enough. - $0"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 9,
+            question : "Data transformation before use?",
+            choices : ["Yes, let's transform the data. - $0.005 per data field transformed","No, use data as-is. - $0"],
+            choice : null,
+            choiceCondition : null,
+            dependentQuestion : 0,
+            dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 10,
+            question : "Load data into target systems?",
+            choices : ["Yes, automate data load via API. - $0.005 per data field loaded via API","No, raw output is sufficient. - $0"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 11,
+            question : "Enable reporting?",
+            choices : ["Yes, basic reporting of document flow. - $0","Custom dashboard. - $2560"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 12,
+            question : "Store data and documents?",
+            choices : ["No, not needed. - $0","Yes"],
+            choice : null,
+            choiceCondition : "No, not needed. - $0",
+             dependentQuestion : 0
+           
+        },
+
+        {
+            questionNumber: 13,
+            question : "Frequency of data and document usage?",
+            choices : ["Daily for 1-2 months - $600 per year.","Occasionally every 6 months - - $420 per year.","For compliance, infrequent (once a year) - $300 per year."],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 14,
+            question : "Enable intelligence services on data?",
+            choices : ["Yes, exploratory data analysis or prediction. - $2200 per month","No, not needed. - $0"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 15,
+            question : "Will you provide necessary infrastructure for deployment?",
+            choices : ["Yes, host within my environment. - $0","Looking for turnkey automation."],
+            choice : null,
+            choiceCondition : "Yes, host within my environment. - $0",
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber: 16,
+            question : "Document types and scale:",
+            choices : ["Readable documents, low volume. - $100 per month","Readable documents, high volume. - $250 per month","Scanned documents/images, low volume. - $300 per month"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        },
+
+        {
+            questionNumber:17,
+            question : "What level of post-implementation support do you need?",
+            choices : ["Basic support. - $0","Shared support. - $528 per month","Privileged support. - $1408 per month"],
+            choice : null,
+            choiceCondition : null,
+             dependentQuestion : 0,
+             dependentChoice : null
+           
+        }
+
+
+
+
+
+    ]
+}
+
+export default Questions
