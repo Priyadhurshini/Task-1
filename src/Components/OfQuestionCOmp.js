@@ -70,9 +70,25 @@ const QuestionComponent = () => {
       {currentQuestion < questions.length ? (
         <>
           <p>{`${'Qn.No: '}${questions[currentQuestion].questionNumber}`}</p>
-          <p className="single-question">{questions[currentQuestion].question}</p>
-          <p>
-            {questions[currentQuestion].choices.map((choice, index) => (
+          <p className="single-question">{questions[currentQuestion].question}</p>        
+          {/* <p>
+          {currentQuestion === 2 ? (
+            <label className="option-list">
+              <select
+                value={selectedChoice || ""}
+                onChange={(e) => handleSelectedChoice(e.target.value)}
+              >
+                <option value="" disabled>Select an option</option>
+                {questions[currentQuestion].choices.map((choice, index) => (
+                  <option key={index} value={choice.text}>
+                    {`${choice.text} - Price: $${choice.price}`}
+                    
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : (
+            questions[currentQuestion].choices.map((choice, index) => (
               <label key={index} className="option-list">
                 <li>
                   <input
@@ -85,8 +101,46 @@ const QuestionComponent = () => {
                   {`${choice.text} - Price: $${choice.price}`}
                 </li>
               </label>
-            ))}
-          </p>
+            ))
+          )}
+        </p> */}
+
+// Your Render Component
+
+<p>
+  {currentQuestion === 2 ? (
+    <label className="option-list">
+      <select
+        value={selectedChoice || ""}
+        onChange={(e) => handleSelectedChoice(e.target.value)}
+      >
+        <option value="" disabled>Select an option</option>
+        {questions[currentQuestion].choices.map((choice, index) => (
+          <option key={index} value={choice.text}>
+            {choice.text}
+          </option>
+        ))}
+      </select>
+    </label>
+  ) : (
+    questions[currentQuestion].choices.map((choice, index) => (
+      <label key={index} className="option-list">
+        <li>
+          <input
+            type="radio"
+            id={choice.text}
+            value={choice.text}
+            checked={selectedChoice === choice.text}
+            onChange={() => handleSelectedChoice(choice.text)}
+          />
+          {`${choice.text}`}
+        </li>
+      </label>
+    ))
+  )}
+</p>
+
+
           <div className="Question-next-btn">
             <button
               className="Previous-Question-btn"
