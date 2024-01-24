@@ -61,13 +61,19 @@ const Questions ={
         {
             questionNumber: 3,
             question : "How many source application you would need to connect to?",
-            choices:
-            [
-                {
-                        text: "Drop Down from 1 to 10",
-                        price: 0
-                }
-            ],
+            // choices: [
+            //     // {
+            //     //   text: "Select an option",  // Placeholder for dropdown
+            //     //   price: 0,
+            //     // },
+            //     ...Array.from({ length: 10 }, (_, index) => ({
+            //       text: ` ${index + 1}`,
+            //       price: 0,
+            //     })),
+            //   ],
+            choices: Array.from({ length: 10 }, (_, index) => ({
+                text: `${index + 1}`,
+              })),
             choice : null,
             choiceCondition : null,
             dependentQuestion : 0,
