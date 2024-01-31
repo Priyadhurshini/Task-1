@@ -1,158 +1,199 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import "./HomepageComponentStyle.css"
+// use this
+import React, { useState, createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useBreakdownContext } from './BreakdownContext';
 
 const Homepage = () => {
+  const { setOrganization } = useBreakdownContext();
 
-  const [inputs, setInputs] = useState({})
-  const [errors,setErrors] = useState({})
-  const [isFormSubmited, setIsFromSumbited] = useState(false)
+  const [inputs, setInputs] = useState({ organization: '' });
+  const [errors, setErrors] = useState({});
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  const handleEventChange =(event) =>{
+  const handleEventChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((prevValues) => ({ ...prevValues, [name]: value }));
-    
-    // alert(name)
-    // alert(value)
-  }
-  
-  const validateInputs = () =>{
+  };
 
+  const validateInputs = () => {
     let isValid = true;
     const newErrors = {};
-    alert("0")
-    // alert(inputs.userName)
-    // alert( JSON.stringify(inputs, null, 2));
 
-    //  start of user name validation
-    if (!("userName" in inputs) || inputs.userName.trim() === "" )
-    {
-      alert("1")
-      newErrors.name  = "Enter a Name"
+    // // Name validation
+    // if (!("userName" in inputs) || inputs.userName.trim() === "") {
+    //   newErrors.userName = "Enter a Name";
+    //   isValid = false;
+    // } else if ("userName" in inputs && !/^[a-zA-Z\s]+$/.test(inputs.userName.trim())) {
+    //   newErrors.userName = "Name should only contain letters";
+    //   isValid = false;
+    // }
+
+    // Organization validation
+    if (!("organization" in inputs) || inputs.organization.trim() === "") {
+      newErrors.organization = "Enter Your Organization";
+      isValid = false;
+    } else if ("organization" in inputs && !/^[a-zA-Z\s]+$/.test(inputs.organization.trim())) {
+      newErrors.organization = "Organization should only contain letters";
       isValid = false;
     }
 
-    else if ( "userName" in inputs && !/^[a-zA-Z\s]+$/.test(inputs.userName.trim()))
-    {
-      alert("3")
-      newErrors.name  = "Name should only contain letters"
-      isValid = false;
-    }
-    // End of user name validation
-
-    // Start of age validation
-
-    if (!("age" in inputs))
-    {
-      alert("age empty")
-      newErrors.age  = "Enter your age"
-      isValid = false;
+    // Account validation (only if organization is 'Sutherlands')
+    if (inputs.organization === "Sutherlands") {
+      if (!("account" in inputs)) {
+        newErrors.account = "Enter your account number";
+        isValid = false;
+      } else if ("account" in inputs && !/^[a-zA-Z0-9]+$/.test(inputs.account)) {
+        newErrors.account = "Enter a valid account number";
+        isValid = false;
+      }
     }
 
-    else if("age" in inputs && !/^\d{2}$/.test(inputs.age))
-    {
-      newErrors.age  = "Enter a valid age"
-      isValid = false;
-    }
-    // End of age validation
-
-    // Start of email validation
-
-    if (!("email" in inputs) || inputs.email.trim() === "")
-    {
-      alert("email empty")
-      newErrors.email  = "Enter your Email"
-      isValid = false;
+    // Organization Name validation (only if organization is not 'Sutherlands')
+    if (inputs.organization !== "Sutherlands") {
+      if (!("organizationName" in inputs) || inputs.organizationName.trim() === "") {
+        newErrors.organizationName = "Enter your organization name";
+        isValid = false;
+      } else if ("organizationName" in inputs && !/^[a-zA-Z\s]+$/.test(inputs.organizationName.trim())) {
+        newErrors.organizationName = "Organization name should only contain letters";
+        isValid = false;
+      }
     }
 
-    else if("email" in inputs && !/^[^\s@]+@[^\s@]+\.[^s@]{2,3}$/.test(inputs.email))
-    {
-      newErrors.email  = "Enter a valid Email"
+    // Email validation
+    if (!("email" in inputs) || inputs.email.trim() === "") {
+      newErrors.email = "Enter your Email";
       isValid = false;
-    }
-    // End of email Validation
-
-    // Start of phone number validation
-    if (!("phoneNumber" in inputs))
-    {
-      alert("phoneNumber empty")
-      newErrors.phoneNumber  = "Enter your Phone Number"
+    } else if ("email" in inputs && !/^[^\s@]+@[^\s@]+\.[^s@]{2,3}$/.test(inputs.email)) {
+      newErrors.email = "Enter a valid Email";
       isValid = false;
     }
 
-    else if("phoneNumber" in inputs && !/^\d{10}$/.test(inputs.phoneNumber))
-    {
-      newErrors.phoneNumber  = "Enter a valid Phone Number"
+    // Phone Number validation
+    if ("phoneNumber" in inputs && !/^\d{10}$/.test(inputs.phoneNumber)) {
+      newErrors.phoneNumber = "Enter a valid Phone Number";
       isValid = false;
     }
-    // End of phone number validation
+
     setErrors(newErrors);
     return isValid;
-  }  
+  };
 
-    
-  const handleSubmit = (event) =>{
-    event.preventDefault(event)
-    // alert(inputs.value)
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    if(validateInputs()){
-      alert("Form submitted")
-      alert(inputs.userName)
-      setIsFromSumbited(true)
+    if (validateInputs()) {
+      setIsFormSubmitted(true);
+
+      setOrganization(inputs.organization === 'Sutherlands' ? 'Sutherlands' : inputs.organizationName);
+      // Navigate to the questions page after form submission
+      navigate('/questions');
+    } else {
+      setIsFormSubmitted(false);
     }
-    else{
-      alert("Form has errors.Please correct them")
-      setIsFromSumbited(false)
-      
-      // alert( JSON.stringify(errors, null, 2));
-    }
-    alert(errors.name)
-}
-const navigate = useNavigate()
+  };
 
+  const navigate = useNavigate();
 
+  
   return (
     <div className='myForm-Container'>
       <form onSubmit={handleSubmit}>
-        <p>{(JSON.stringify(errors, null, 2))}</p>
-        <label>Name : </label>
-        <input  type='text'
-                name = "userName"
-                value = {inputs.name}
-                onChange={handleEventChange}></input><span>{errors.name}</span><br></br>
-                                              
+        {/* <div className='form-Row'>
+          <label className='form-Label'>Name:</label>
+          <input
+            className='form-Input'
+            type='text'
+            name='userName'
+            value={inputs.userName || ''}
+            onChange={handleEventChange}
+          />
+          <div className='error-message'>{errors.userName}</div>
+        </div> */}
 
-        <label>Age : </label>
-        <input  type="number"
-                name = "age"                
-                value ={inputs.age}
-                onChange={handleEventChange}></input><span>{errors.age}</span><br></br>   
+        
+          <div className="form-Row">
+            <label className="form-Label">Organization: </label>
+            <select
+              className="form-Input"
+              name="organization"
+              value={inputs.organization}
+              onChange={handleEventChange}
+            >
+              <option value="" disabled>
+                Select an option
+              </option>
+              <option value="Sutherlands">Sutherlands</option>
+              <option value="Other">Others</option>
+            </select>
+            <div className="error-message">{errors.organization}</div>
+            <br />
+          </div>
 
-        <label>Email : </label>
-        <input  type="email"
-                name = "email"                
-                value ={inputs.email}
-                onChange={handleEventChange}></input><span>{errors.email}</span><br></br>   
+          {/* Render account or organization name input field based on the organization */}
+          {inputs.organization === 'Sutherlands' ? (
+            <div className='form-Row'>
+              <label className='form-Label'>Account:</label>
+              <input
+                className='form-Input'
+                type='text'
+                name='account'
+                value={inputs.account || ''}
+                onChange={handleEventChange}
+              />
+              <div className='error-message'>{errors.account}</div>
+            </div>
+          ) : (
+            <div className='form-Row'>
+              <label className='form-Label'>Organization Name:</label>
+              <input
+                className='form-Input'
+                type='text'
+                name='organizationName'
+                value={inputs.organizationName || ''}
+                onChange={handleEventChange}
+              />
+              <div className='error-message'>{errors.organizationName}</div>
+            </div>
+          )}
 
-        <label>Phone Number : </label>
-        <input  type="number"
-                name = "phoneNumber"                
-                value ={inputs.phone}
-                onChange={handleEventChange}></input><span>{errors.phoneNumber}</span><br></br> 
 
-        <button className='Submit-btn' type="submit"
-                onClick={handleSubmit}>Submit</button><br></br>
+        {/* Render email input field */}
+        <div className='form-Row'>
+          <label className='form-Label'>Email:</label>
+          <input
+            className='form-Input'
+            type='email'
+            name='email'
+            value={inputs.email || ''}
+            onChange={handleEventChange}
+          />
+          <div className='error-message'>{errors.email}</div>
+        </div>
 
-        <button className='Nextpage-btn' 
-                disabled  = {isFormSubmited === false}
-                onClick={()=>navigate("/questions")}>Question button</button>
+        {/* Render phone number input field */}
+        <div className='form-Row'>
+          <label className='form-Label'>Phone Number:</label>
+          <input
+            className='form-Input'
+            type='number'
+            name='phoneNumber'
+            value={inputs.phoneNumber || ''}
+            onChange={handleEventChange}
+          />
+          <div className='error-message'>{errors.phoneNumber}</div>
+        </div>
+
+        <div className='submit-btn-container'>
+          <button className='Submit-btn' type='submit' onClick={handleSubmit}>
+            Submit
+          </button>
+          <br />
+          {isFormSubmitted && <p>Form submitted successfully!</p>}
+        </div>
       </form>
-      
-      
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;
