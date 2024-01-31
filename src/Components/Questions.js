@@ -1,3 +1,4 @@
+// use this
 import React from "react";
 
 const Questions ={
@@ -6,8 +7,24 @@ const Questions ={
             
         {
             questionNumber: 1,
-            question : "How many days do you need?",
-            choices : ["a","b","c"],
+            question : "What would you like to do?",
+            choices:
+                [
+                    {
+                        text: "I want to classify documents.",
+                        price: 0
+                    },
+
+                    {
+                        text: "I want to extract data from documents.",
+                        price: 0
+                    },
+
+                    {
+                        text: "Both",
+                        price: 0
+                    }
+                ],
             choice : null,
             choiceCondition: null,
             dependentQuestion : 0,
@@ -17,10 +34,26 @@ const Questions ={
 
         {
             questionNumber: 2,
-            question : "How many papers do you need?",
-            choices : ["a","b","c"],
+            question : "How will you provide documents for processing?",
+            choices:
+                [
+                    {
+                        text: "I can place documents in a folder.",
+                        price: 0
+                },
+
+                    {
+                        text: "We have APIs to transfer documents.",
+                        price: 0
+                    },
+
+                    {
+                        text: "We may need custom connectors.(per connector)",
+                        price: 1280 //per connector
+                    }
+                ],
             choice : null,
-            choiceCondition : "c" ,
+            choiceCondition : "We may need custom connectors.",
             dependentQuestion : 0,
             dependentChoice : null
             
@@ -28,74 +61,160 @@ const Questions ={
 
         {
             questionNumber: 3,
-            question : "How many pens do you need?",
-            choices : ["a","b","c"],
+            question : "How many source application you would need to connect to?",
+            choices: Array.from({ length: 10 }, (_, index) => ({
+                text: `${index + 1}`,
+                price: 0
+                })
+            ),
             choice : null,
             choiceCondition : null,
-             dependentQuestion : 0,
-             dependentChoice : null
+            dependentQuestion : 0,
+            dependentChoice : null
            
         },
 
         {
             questionNumber: 4,
-            question : "Question 4",
-            choices : ["a","b","c"],
+            question : "Tell us about document quality:",
+            choices :
+            [
+                {
+                    text: "Documents are clean and of good quality.",
+                    price: 0
+                },
+
+                {
+                    text: "We need to improve document quality.",
+                    price: 2160
+                }
+            ],
             choice : null,
             choiceCondition : null,
             dependentQuestion : 1,
-            dependentChoice : "b"
+            dependentChoice : "I want to extract data from documents."
            
         },
 
         {
             questionNumber: 5,
-            question : "Question 5",
-            choices : ["a","b","c"],
+            question : "Document classification:",
+            choices :
+            [
+                {
+                    text: "Single-page documents. (per page)",
+                    price: 0.02 // per page
+                },
+
+                {
+                    text: "PDF packages with multiple documents. (per page)",
+                    price: 0.04
+                }
+            ],
             choice : null,
             choiceCondition : null,
             dependentQuestion : 1,
-            dependentChoice : "a"
+            dependentChoice : "I want to classify documents."
            
         },
 
         {
             questionNumber: 6,
-            question : "Question 6",
-            choices : ["a","b","c"],
+            question : "Data extraction preferences:",
+            choices :
+            [
+                {
+                    text: "Extract everything for readability. (per page)",
+                    price: 0.02 // per page
+                },
+
+                {
+                    text: "Extract specific fields.(per page)",
+                    price: 0.04 // per page
+                },
+
+                {
+                    text: "Complex extraction (tables, JSON, CSV, etc.). (per page)",
+                    price: 0.06  //per page
+                },
+
+                {
+                    text: "Extract handwritten information.(per page)",
+                    price: 0.10  //per page
+                }
+            ],
             choice : null,
             choiceCondition : null,
-             dependentQuestion : 0,
-             dependentChoice : null
-           
+            dependentQuestion : 0,
+            dependentChoice : null
+        
         },
 
         {
             questionNumber: 7,
-            question : "Question 7",
-            choices : ["a","b","c"],
+            question : "Need data validation?",
+            choices :
+            [
+                {
+                    text: "Yes, basic checks (e.g., expiry).(per data validated)",
+                    price: 0.001 //per data validated
+                },
+
+                {
+                    text: "Yes, cross-reference with multiple sources.(per data validated)",
+                    price: 0.005 //per data validated
+                },
+
+                {
+                    text: "No, validation not needed.",
+                    price: 0
+                },
+
+            ],
             choice : null,
             choiceCondition : null,
-             dependentQuestion : 0,
-             dependentChoice : null
+            dependentQuestion : 0,
+            dependentChoice : null
            
         },
 
         {
             questionNumber: 8,
-            question : "Question 8",
-            choices : ["a","b","c"],
+            question : "Require human verification?",
+            choices :
+            [
+                {
+                    text: "Yes, accuracy is crucial.",
+                    price: 6000
+                },
+
+                {
+                    text: "No, further internal validation is enough",
+                    price: 0
+                }
+            ],
             choice : null,
             choiceCondition : null,
-             dependentQuestion : 0,
-             dependentChoice : null
+            dependentQuestion : 0,
+            dependentChoice : null
            
         },
 
         {
             questionNumber: 9,
-            question : "Question 9",
-            choices : ["a","b","c"],
+            question : "Data transformation before use?",
+            choices :
+            [
+                {
+                    text: "Yes, let's transform the data.(per data field transformed)",
+                    price: 0.005 //per data field transformed
+                },
+
+                {
+                    text: "No, use data as-is.",
+                    price: 0
+                }
+            ],
             choice : null,
             choiceCondition : null,
             dependentQuestion : 0,
@@ -105,40 +224,86 @@ const Questions ={
 
         {
             questionNumber: 10,
-            question : "Question 10",
-            choices : ["a","b","c"],
+            question : "Load data into target systems?",
+            choices :
+            [
+                {
+                    text: "Yes, automate data load via API.(per data field loaded via API)",
+                    price:0.005 //per data field loaded via API
+                },
+
+                {
+                    text: "No, raw output is sufficient.",
+                    price: 0
+                }
+            ],
             choice : null,
             choiceCondition : null,
-             dependentQuestion : 0,
-             dependentChoice : null
+            dependentQuestion : 0,
+            dependentChoice : null
            
         },
 
         {
             questionNumber: 11,
-            question : "Question 11",
-            choices : ["a","b","c"],
+            question : "Enable reporting?",
+            choices :
+            [
+                {
+                    text: "Yes, basic reporting of document flow.",
+                    price:0
+                },
+
+                {
+                    text: "Custom dashboard.",
+                    price: 2560
+                }
+            ],
             choice : null,
             choiceCondition : null,
-             dependentQuestion : 0,
-             dependentChoice : null
+            dependentQuestion : 0,
+            dependentChoice : null
            
         },
 
         {
             questionNumber: 12,
-            question : "Question 12",
-            choices : ["a","b","c"],
+            question : "Store data and documents?",
+            choices :
+            [
+                {
+                    text: "No, not needed.",
+                    price:0
+                },
+                {
+                    text: "Yes",
+                    price:0
+                },
+            ],
             choice : null,
-            choiceCondition : "a",
-             dependentQuestion : 0
+            choiceCondition : "No, not needed.",
+            dependentQuestion : 0
            
         },
 
         {
             questionNumber: 13,
-            question : "Question 13",
-            choices : ["a","b","c"],
+            question : "Frequency of data and document usage?",
+            choices :
+            [
+                {
+                    text: "Daily for 1-2 months. (per year)",
+                    price: 600 //per year
+                },
+                {
+                    text: "Occasionally every 6 months.(per year)",
+                    price: 420 //per year
+                },
+                {
+                    text: "For compliance, infrequent-once a year. (per year)",
+                    price: 300 //per year
+                }
+            ],
             choice : null,
             choiceCondition : null,
              dependentQuestion : 0,
@@ -148,8 +313,18 @@ const Questions ={
 
         {
             questionNumber: 14,
-            question : "Question 14",
-            choices : ["a","b","c"],
+            question : "Enable intelligence services on data?",
+            choices :
+            [
+                {
+                    text: "Yes, exploratory data analysis or prediction. (per month)",
+                    price: 200 //per month
+                },
+                {
+                    text: "No, not needed.",
+                    price: 0
+                }
+            ],
             choice : null,
             choiceCondition : null,
              dependentQuestion : 0,
@@ -159,19 +334,43 @@ const Questions ={
 
         {
             questionNumber: 15,
-            question : "Question 15",
-            choices : ["a","b","c"],
+            question : "Will you provide necessary infrastructure for deployment?",
+            choices :
+            [
+                {
+                    text: "Yes, host within my environment.",
+                    price: 0
+                },
+                {
+                    text: "Looking for turnkey automation",
+                    price: 0
+                }
+            ],
             choice : null,
-            choiceCondition : "a",
-             dependentQuestion : 0,
-             dependentChoice : null
-           
+            choiceCondition : "Yes, host within my environment.",
+            dependentQuestion : 0,
+            dependentChoice : null
+        
         },
 
         {
             questionNumber: 16,
-            question : "Question 16",
-            choices : ["a","b","c"],
+            question : "Document types and scale:",
+            choices :
+            [
+                {
+                    text: "Readable documents, low volume. (per month)",
+                    price: 100 // per month
+                },
+                {
+                    text: "Readable documents, high volume.(per month)",
+                    price: 250 // per month
+                },
+                {
+                    text : "Scanned documents/images, low volume.(per month)",
+                    price : 300 // per month
+                }
+            ],
             choice : null,
             choiceCondition : null,
              dependentQuestion : 0,
@@ -181,13 +380,26 @@ const Questions ={
 
         {
             questionNumber:17,
-            question : "Question 17",
-            choices : ["a","b","c"],
+            question : "What level of post-implementation support do you need?",
+            choices :
+            [
+                {
+                    text: "Basic support.",
+                    price: 0
+                },
+                {
+                    text: "Shared support.(per month)",
+                    price: 528 // per month
+                },
+                {
+                    text : "Privileged support.(per month)",
+                    price : 1408 // per month
+                }
+            ],
             choice : null,
             choiceCondition : null,
-             dependentQuestion : 0,
-             dependentChoice : null
-           
+            dependentQuestion : 0,
+            dependentChoice : null
         }
 
 
