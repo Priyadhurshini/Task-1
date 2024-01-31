@@ -1,0 +1,184 @@
+// use this
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: auto;
+}
+
+.myForm-Container,
+.login-form-container,
+.final-details-container
+{
+
+    padding: 16px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width:300px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.form-Row{
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.form-Label{
+    width: 100px;
+    margin-right: 8px;
+}
+
+.form-Input{
+    flex: 1;
+    padding: 8px;
+}
+
+.error-message{
+    display: block;
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.submit-btn-container{
+    display: flex;
+    justify-content: center;
+}
+.Submit-btn{
+    width: 40%;
+    padding: 12px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.Submit-btn:hover{
+    background-color:rgb(86, 199, 236);
+}
+.Submit-btn:disabled{
+    cursor: not-allowed;
+}
+
+.Nextpage-btn{
+    width: 40%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.Question-Container{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Question-Container p {
+    margin-bottom: 10px;
+   
+}
+
+.single-question{
+    font-weight: bold;
+}
+
+.Question-Container li {
+    margin-bottom: 50px;
+    list-style-type: none;
+    margin: 0;
+}
+
+.Question-Container ul {
+    margin-bottom: 50px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.Question-Container li label {
+    display: flex;
+    align-items: center;
+}
+
+.option-list{
+    display: flex;
+    padding-bottom: 10px;
+    
+}
+
+.Question-next-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.Previous-Question-btn,
+.Next-Question-btn {
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Previous-Question-btn:disabled,
+.Next-Question-btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.done-btn-container{
+    display: flex;
+    justify-content: center;
+}
+.Done-btn{
+    width: 40%;
+    padding: 12px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* .breakdown-container{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    text-align: center;
+} */
+
+.breakdown-container {
+    text-align: center;
+  }
+  
+  .bill-line {
+    margin-bottom: 10px;
+  }
+  
+  .bill-text {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .bill-value {
+    font-weight: bold;
+  }
+  
