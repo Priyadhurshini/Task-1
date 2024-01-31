@@ -1,0 +1,45 @@
+// use this
+import React from 'react';
+import { useContext } from 'react';
+import { useBreakdownContext } from './BreakdownContext';
+
+
+export const Breakdown = ({ meteringAsYouGo, fixedRecurring, totalPrice, processName, monthlyDoc, yearOfCommitment }) => {
+
+  const { organizationValue } = useBreakdownContext();
+  console.log(organizationValue)
+
+
+  return (
+    <div className='breakdown-container'>
+
+    <div className='bill-line'>    
+        <span className='bill-text'>Name Of The Organization:</span>
+        <span className='bill-value'>{organizationValue}</span>
+      </div>
+
+      <div className='bill-line'>
+        <span className='bill-text'>Name Of The Process:</span>
+        <span className='bill-value'>{processName}</span>
+      </div>
+
+      <div className='bill-line'>
+        <span className='bill-text'>Process Estimation for {monthlyDoc} Monthly Document:</span>
+        <span className='bill-value'>${meteringAsYouGo}</span>
+      </div>
+
+      <div className='bill-line'>
+        <span className='bill-text'>Estimation For Minimum Commitment Of {yearOfCommitment} Years For Automation:</span>
+        <span className='bill-value'>${fixedRecurring}</span>
+      </div>
+
+      <div className='bill-line'>
+        <span className='bill-text'>Total Price:</span>
+        <span className='bill-value'>${totalPrice}</span>
+      </div>
+    </div>
+  );
+};
+
+
+
